@@ -36,6 +36,7 @@ resource "aws_subnet" "private" {
   map_public_ip_on_launch = false
   tags = {
   Name = "private_Subnet"
+  "kubernetes.io/role/internal-elb" = 1    
   }
 }
 
