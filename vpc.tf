@@ -200,7 +200,7 @@ resource "aws_route_table" "NAT_GW_Route_table" {
 resource "aws_route" "Route_to_NAT_GW" {
   route_table_id         = aws_route_table.NAT_GW_Route_table.id
   destination_cidr_block = "0.0.0.0/0"
-  gateway_id             = aws_nat_gateway.NAT_Gateway.id
+  gateway_id             = aws_nat_gateway.[count.index]
 }
 
 resource "aws_route_table_association" "private_subnet_associate" {
