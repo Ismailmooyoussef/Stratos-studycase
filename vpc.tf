@@ -174,18 +174,12 @@ resource "aws_security_group" "Private_Security_Group" {
   protocol    = -1
   }
 }
-
-# Create a NAT Gateway
-
-resource "aws_eip" "NAT_Gateway_EIP" {
-  vpc      = true
-}
-
+# create NAT gateway
 resource "aws_nat_gateway" "NAT_Gateway" {
-  count      = "${length(var.public_subnets)}"
+  #count      = "${length(var.public_subnet)}"
   allocation_id = aws_eip.NAT_Gateway_EIP.id
-  subnet_id     = "${element(aws_subnet.public.*.id, count.index)}" # To loop on the 3 subnets
-  
+#   subnet_id     = "${element(aws_subnet.public.*.id, count.index)}" # To loop on the 3 subnets
+  subnet_id     = element(aws_subnet.public.*.id, 0)
 }
 
 # Create a Route table for NAT GW
@@ -200,7 +194,7 @@ resource "aws_route_table" "NAT_GW_Route_table" {
 resource "aws_route" "Route_to_NAT_GW" {
   route_table_id         = aws_route_table.NAT_GW_Route_table.id
   destination_cidr_block = "0.0.0.0/0"
-  gateway_id             = aws_nat_gateway.[count.index]
+  gateway_id             = aws_nat_gateway.NAT_Gateway.id
 }
 
 resource "aws_route_table_association" "private_subnet_associate" {
