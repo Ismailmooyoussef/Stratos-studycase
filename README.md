@@ -6,10 +6,10 @@ Description, TBD
 
     Nodes will be deployed in the private subnets
     Load balancers will be deployed in the public subnets
-    the EKS elastic interfaces will be deployed in dedicated private subnets ....
+    the EKS elastic interfaces will be deployed in dedicated private subnets
 
 
-To create 2 test instacnes (one in Private & one in Public subnet)
+
 
 export AWS_ACCESS_KEY_ID=''
 export AWS_SECRET_ACCESS_KEY=''
