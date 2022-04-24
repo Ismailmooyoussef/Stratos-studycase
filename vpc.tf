@@ -185,7 +185,7 @@ resource "aws_nat_gateway" "NAT_Gateway" {
   count      = "${length(var.public_subnet)}"
   allocation_id = aws_eip.NAT_Gateway_EIP.id
   subnet_id     = "${element(aws_subnet.public.*.id, count.index)}" # To loop on the 3 subnets
-  subnet_id     = element(aws_subnet.public.*.id, 0)
+  
 }
 
 # Create a Route table for NAT GW
