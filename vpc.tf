@@ -175,6 +175,11 @@ resource "aws_security_group" "Private_Security_Group" {
   }
 }
 # create NAT gateway
+
+resource "aws_eip" "NAT_Gateway_EIP" {
+  vpc      = true
+}
+
 resource "aws_nat_gateway" "NAT_Gateway" {
   #count      = "${length(var.public_subnet)}"
   allocation_id = aws_eip.NAT_Gateway_EIP.id
