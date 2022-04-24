@@ -12,13 +12,21 @@ Description, TBD
 
 
 export AWS_ACCESS_KEY_ID=''
+
+
 export AWS_SECRET_ACCESS_KEY=''
+
+
 export AWS_REGION='us-east-1'
 
 Run
 
 terraform init
+
+
 terraform plan
+
+
 terraform apply
 
 Get the kubeconfig file
